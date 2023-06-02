@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { Grid, Typography, Box } from "@mui/material";
 import ExperienceCard from "./ExperienceCard";
@@ -15,17 +15,17 @@ const Model = () => {
   );
 
   const containerRef = useRef(null);
-  const scrollY = useRef(0);
+  //   const scrollY = useRef(0);
 
-  const handleDrag = (event, info) => {
-    const currentScrollY = containerRef.current?.scrollTop || 0;
+  const handleDrag = (
+    event: { target: any },
+    info: { delta: { y: number }; point: { y: number } }
+  ) => {
+    console.log(event);
+    const currentScrollY = 0;
     const isDraggingFromTop = currentScrollY === 0 && info.delta.y > 0;
 
-    if (
-      !containerRef.current ||
-      !containerRef.current.contains(event.target) ||
-      !isDraggingFromTop
-    ) {
+    if (!containerRef.current || !isDraggingFromTop) {
       // Check if the drag event is not within the container or not dragging from the top
       return;
     }
@@ -33,7 +33,11 @@ const Model = () => {
     y.set(info.point.y);
   };
 
-  const handleDragEnd = (event, info) => {
+  const handleDragEnd = (
+    event: any,
+    info: { point: { y: number }; velocity: { y: number } }
+  ) => {
+    console.log(event);
     const dragThreshold = window.innerHeight / 3;
 
     if (info.point.y > dragThreshold || info.velocity.y > 500) {
@@ -50,9 +54,9 @@ const Model = () => {
     y.set(-window.innerHeight);
   };
 
-  const handleScroll = () => {
-    scrollY.current = containerRef.current?.scrollTop || 0;
-  };
+  //   const handleScroll = () => {
+  //     scrollY.current = containerRef.current.scrollTop || 0;
+  //   };
 
   const handleClick = () => {
     if (isOpen) {
@@ -161,7 +165,7 @@ const Model = () => {
               padding: "5px",
               boxSizing: "border-box",
             }}
-            onScroll={handleScroll}
+            // onScroll={handleScroll}
           >
             <Box sx={{ display: "flex", gap: 1, mt: 5, ml: 6, mr: 5 }}>
               <Typography variant="h6">Showing</Typography>

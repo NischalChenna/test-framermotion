@@ -1,15 +1,11 @@
-import PlaceIcon from "@mui/icons-material/Place";
-import { Box, Card, CardContent, Icon, Typography } from "@mui/material";
+import { Box, Card, CardContent, Typography } from "@mui/material";
 import ExperienceCardSlider from "../ExperienceCardSlider";
 import StarIcon from "@mui/icons-material/Star";
 import {
-  StylesActualPrice,
   StylesCardTitle,
   StylesDiscountPrice,
-  StylesDiscountText,
   StylesExperienceCard,
   StylesLocationContainer,
-  StylesPackageText,
   StylesPriceContainer,
   StylesRatingContainer,
   StylesTitleContainer,
@@ -31,11 +27,11 @@ interface CardItemProps {
 const ExperienceCard = ({
   image,
   title,
-  feature,
+  //   feature,
   currency,
   price,
-  discount_price,
-  discount,
+  //   discount_price,
+  //   discount,
   location,
   startDate,
   endDate,
