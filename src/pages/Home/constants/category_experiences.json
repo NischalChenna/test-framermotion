@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "image": [
+      "https://plus.unsplash.com/premium_photo-1673709359598-db2868b023f6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aGQlMjBwaG90b3N8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
+    ],
+    "title": "Valencia",
+    "location": "Spain",
+    "feature": "For One",
+    "currency": "$",
+    "price": "1,440.00",
+    "discount_price": "1,152.00",
+    "discount": "20%",
+    "content": "Stay with Sagrario Coach",
+    "startDate": "Jul 27",
+    "endDate": "Aug 5"
+  },
+  {
+    "id": 2,
+    "image": [
+      "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8aGQlMjBwaG90b3N8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
+    ],
+    "title": "Valencia",
+    "location": "Spain",
+    "feature": "For One",
+    "currency": "$",
+    "price": "1,440.00",
+    "discount_price": "1,152.00",
+    "discount": "20%",
+    "content": "Stay with Sagrario Coach",
+    "startDate": "Jul 27",
+    "endDate": "Aug 5"
+  },
+  {
+    "id": 3,
+    "image": [
+      "https://images.unsplash.com/photo-1587971051803-70bf6d4ae977?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzJ8fGhkJTIwcGhvdG9zfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
+    ],
+    "title": "Valencia",
+    "location": "Spain",
+    "feature": "For One",
+    "currency": "$",
+    "price": "1,440.00",
+    "discount_price": "1,152.00",
+    "discount": "20%",
+    "content": "Stay with Sagrario Coach",
+    "startDate": "Jul 27",
+    "endDate": "Aug 5"
+  },
+  {
+    "id": 4,
+    "image": [
+      "https://plus.unsplash.com/premium_photo-1673709359598-db2868b023f6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aGQlMjBwaG90b3N8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
+    ],
+    "title": "Valencia",
+    "location": "Spain",
+    "feature": "For One",
+    "currency": "$",
+    "price": "1,440.00",
+    "discount_price": "1,152.00",
+    "discount": "20%",
+    "content": "Stay with Sagrario Coach",
+    "startDate": "Jul 27",
+    "endDate": "Aug 5"
+  },
+  {
+    "id": 5,
+    "image": [
+      "https://images.unsplash.com/photo-1620833186904-df5d75990d3e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDd8fGhkJTIwcGhvdG9zfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
+    ],
+    "title": "Valencia",
+    "location": "Spain",
+    "feature": "For One",
+    "currency": "$",
+    "price": "1,440.00",
+    "discount_price": "1,152.00",
+    "discount": "20%",
+    "content": "Stay with Sagrario Coach",
+    "startDate": "Jul 27",
+    "endDate": "Aug 5"
+  },
+  {
+    "id": 6,
+    "image": [
+      "https://images.unsplash.com/photo-1528932860067-7e2e27b3185f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTd8fGhkJTIwcGhvdG9zfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
+    ],
+    "title": "Valencia",
+    "location": "Spain",
+    "feature": "For One",
+    "currency": "$",
+    "price": "1,440.00",
+    "discount_price": "1,152.00",
+    "discount": "20%",
+    "content": "Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except AntarcticaLizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica",
+    "startDate": "Jul 27",
+    "endDate": "Aug 5"
+  }
+]
