@@ -51,7 +51,7 @@ const Model = () => {
 
   const handleDragEnd = (_: any, info: { offset: { y: number } }) => {
     setIsDragging(false);
-    if (info.offset.y > 500) {
+    if (info.offset.y > 250) {
       handleClose();
     } else {
       y.set(0);
