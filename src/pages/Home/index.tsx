@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { Grid, Typography, Box } from "@mui/material";
 import ExperienceCard from "./ExperienceCard";
@@ -15,7 +15,7 @@ const Model = () => {
     [0, window.innerHeight]
   );
 
-  const containerRef = useRef<HTMLDivElement>(null);
+  // const containerRef = useRef<HTMLDivElement>(null);
 
   const handleOpen = () => {
     setIsOpen(true);
@@ -34,27 +34,27 @@ const Model = () => {
     }
   };
 
-  const handleDragEndToOpen = (_: any, info: { offset: { y: number } }) => {
-    setIsDragging(false);
-    if (info.offset.y < 100) {
-      handleOpen();
-    } else {
-      y.set(-window.innerHeight - info.offset.y);
-    }
-  };
+  // const handleDragEndToOpen = (_: any, info: { offset: { y: number } }) => {
+  //   setIsDragging(false);
+  //   if (info.offset.y < 100) {
+  //     handleOpen();
+  //   } else {
+  //     y.set(-window.innerHeight - info.offset.y);
+  //   }
+  // };
 
-  const handleDragUp = (_: any, info: { velocity: { y: any } }) => {
-    const velocity = info.velocity.y;
-    const isSwipeUp = velocity < 0; // Check if the swipe is upward
-    if (!isDragging && velocity > 500 && isSwipeUp) {
-      // Only enable dragging on swipe up
-      setIsDragging(true);
-      if (isOpen) {
-        // Increase the height of the model div on swipe up
-        translateY.set(-window.innerHeight);
-      }
-    }
-  };
+  // const handleDragUp = (_: any, info: { velocity: { y: any } }) => {
+  //   const velocity = info.velocity.y;
+  //   const isSwipeUp = velocity < 0; // Check if the swipe is upward
+  //   if (!isDragging && velocity > 500 && isSwipeUp) {
+  //     // Only enable dragging on swipe up
+  //     setIsDragging(true);
+  //     if (isOpen) {
+  //       // Increase the height of the model div on swipe up
+  //       translateY.set(-window.innerHeight);
+  //     }
+  //   }
+  // };
 
   const handleDrag = (
     _: any,
