@@ -56,7 +56,7 @@ const Model = () => {
     } else {
       y.set(0);
       if (!isOpen && modelDivRef.current) {
-        modelDivRef.current.style.height = "10vh"; // Set the initial height here
+        modelDivRef.current.style.height = "15vh"; // Set the initial height here
       }
     }
   };
@@ -64,6 +64,9 @@ const Model = () => {
   const handleDragUp = (_: any, info: { velocity: { y: any } }) => {
     const velocity = info.velocity.y;
     const isSwipeUp = velocity < 0; // Check if the swipe is upward
+    // if (!isOpen && modelDivRef.current) {
+    //   modelDivRef.current.style.height = "40vh"; // Set the initial height here
+    // }
     if (!isDragging && velocity < 300 && isSwipeUp) {
       // Only enable dragging on swipe up
       setIsDragging(true);
@@ -112,7 +115,7 @@ const Model = () => {
           bottom: isOpen ? "auto" : 0,
           left: 0,
           width: "100%",
-          height: isOpen ? "100%" : "10vh", // Adjust the initial height value here
+          height: isOpen ? "100%" : "15vh", // Adjust the initial height value here
           pointerEvents: isOpen ? "initial" : "auto",
           zIndex: 2,
           // overflowY: "scroll",
@@ -141,14 +144,25 @@ const Model = () => {
             <></>
           )}
           <Box
-            sx={{
-              display: "flex",
-              gap: 1,
-              mt: 5,
-              ml: 6,
-              mr: 5,
-              justifyContent: "center",
-            }}
+            sx={
+              !isOpen
+                ? {
+                    display: "flex",
+                    gap: 1,
+                    ml: 6,
+                    mr: 5,
+                    // mb: 2,
+                    justifyContent: "center",
+                  }
+                : {
+                    display: "flex",
+                    gap: 1,
+                    mt: 5,
+                    ml: 6,
+                    mr: 5,
+                    // justifyContent: "center",
+                  }
+            }
           >
             <Typography variant="h6">Showing</Typography>
             <Typography
