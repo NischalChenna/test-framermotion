@@ -56,7 +56,7 @@ const Model = () => {
     } else {
       y.set(0);
       if (!isOpen && modelDivRef.current) {
-        modelDivRef.current.style.height = "15vh"; // Set the initial height here
+        modelDivRef.current.style.height = "12vh"; // Set the initial height here
       }
     }
   };
@@ -115,7 +115,7 @@ const Model = () => {
           bottom: isOpen ? "auto" : 0,
           left: 0,
           width: "100%",
-          height: isOpen ? "100%" : "15vh", // Adjust the initial height value here
+          height: isOpen ? "100%" : "12vh", // Adjust the initial height value here
           pointerEvents: isOpen ? "initial" : "auto",
           zIndex: 2,
           // overflowY: "scroll",
@@ -149,9 +149,6 @@ const Model = () => {
                 ? {
                     display: "flex",
                     gap: 1,
-                    ml: 6,
-                    mr: 5,
-                    // mb: 2,
                     justifyContent: "center",
                   }
                 : {
