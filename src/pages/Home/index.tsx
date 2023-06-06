@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { Grid, Typography, Box } from "@mui/material";
 import ExperienceCard from "./ExperienceCard";
 import CategoryExperiencesData from "../Home/constants/category_experiences.json";
+import { height } from "@mui/system";
 
 const Model = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -15,6 +16,8 @@ const Model = () => {
     [0, window.innerHeight]
   );
 
+  const modelDivRef = useRef<HTMLDivElement>(null);
+
   // const containerRef = useRef<HTMLDivElement>(null);
 
   const handleOpen = () => {
@@ -25,36 +28,14 @@ const Model = () => {
     setIsOpen(false);
   };
 
-  const handleDragEnd = (_: any, info: { offset: { y: number } }) => {
-    setIsDragging(false);
-    if (info.offset.y > 700) {
-      handleClose();
-    } else {
-      y.set(0);
+  useEffect(() => {
+    if (isDragging && isOpen && modelDivRef.current) {
+      modelDivRef.current.style.height = "auto";
+    } else if (!isDragging && isOpen && modelDivRef.current) {
+      modelDivRef.current.style.height = "100%";
     }
-  };
-
-  // const handleDragEndToOpen = (_: any, info: { offset: { y: number } }) => {
-  //   setIsDragging(false);
-  //   if (info.offset.y < 100) {
-  //     handleOpen();
-  //   } else {
-  //     y.set(-window.innerHeight - info.offset.y);
-  //   }
-  // };
-
-  // const handleDragUp = (_: any, info: { velocity: { y: any } }) => {
-  //   const velocity = info.velocity.y;
-  //   const isSwipeUp = velocity < 0; // Check if the swipe is upward
-  //   if (!isDragging && velocity > 500 && isSwipeUp) {
-  //     // Only enable dragging on swipe up
-  //     setIsDragging(true);
-  //     if (isOpen) {
-  //       // Increase the height of the model div on swipe up
-  //       translateY.set(-window.innerHeight);
-  //     }
-  //   }
-  // };
+    console.log(isDragging);
+  }, [isDragging, isOpen]);
 
   const handleDrag = (
     _: any,
@@ -66,6 +47,38 @@ const Model = () => {
       setIsDragging(true);
     }
     y.set(info.offset.y);
+  };
+
+  const handleDragEnd = (_: any, info: { offset: { y: number } }) => {
+    setIsDragging(false);
+    if (info.offset.y > 500) {
+      handleClose();
+    } else {
+      y.set(0);
+      if (!isOpen && modelDivRef.current) {
+        modelDivRef.current.style.height = "10vh"; // Set the initial height here
+      }
+    }
+  };
+
+  const handleDragUp = (_: any, info: { velocity: { y: any } }) => {
+    const velocity = info.velocity.y;
+    const isSwipeUp = velocity < 0; // Check if the swipe is upward
+    if (!isDragging && velocity < 300 && isSwipeUp) {
+      // Only enable dragging on swipe up
+      setIsDragging(true);
+    }
+  };
+
+  // Rest of the code...
+
+  const handleDragEndToOpen = (_: any, info: { offset: { y: number } }) => {
+    setIsDragging(false);
+    console.log(info.offset.y);
+    if (info.offset.y < -50) {
+      handleOpen();
+      y.set(0);
+    }
   };
 
   return (
@@ -88,41 +101,55 @@ const Model = () => {
           Background Content
         </h1>
       </motion.div>
-      {!isOpen ? (
-        <motion.div
-          className="small-div"
-          style={{
-            transform: `translateY(${translateY}px)`,
-            backgroundColor: "#fff",
-            position: "fixed",
-            top: isOpen ? 0 : "auto",
-            bottom: isOpen ? "auto" : 0,
-            left: 0,
-            width: "100%",
-            height: isOpen ? "100%" : "10vh", // Adjust the initial height value here
-            zIndex: isOpen ? 2 : 3,
-            // overflowY: "scroll",
-            justifyContent: !isOpen ? "center" : "",
-            pointerEvents: "auto",
-          }}
-          // drag={"y"}
-          // dragConstraints={{ top: -window.innerHeight, bottom: 0 }}
-          // dragElastic={0.2}
-          // onDrag={handleDragUp}
-          // onDragEnd={handleDragEndToOpen}
-          onClick={() => handleOpen()}
-        >
+      <motion.div
+        className="model motion-draggable"
+        ref={modelDivRef}
+        style={{
+          transform: `translateY(${translateY}px)`,
+          backgroundColor: "#fff",
+          position: "fixed",
+          top: isOpen ? 0 : "auto",
+          bottom: isOpen ? "auto" : 0,
+          left: 0,
+          width: "100%",
+          height: isOpen ? "100%" : "10vh", // Adjust the initial height value here
+          pointerEvents: isOpen ? "initial" : "auto",
+          zIndex: 2,
+          // overflowY: "scroll",
+          // display: !isOpen ? "flex" : "",
+          justifyContent: !isOpen ? "center" : "",
+        }}
+        drag={"y"}
+        dragConstraints={{ top: 0, bottom: 0 }}
+        dragElastic={0.8}
+        onDrag={isOpen ? handleDrag : handleDragUp}
+        onDragEnd={isOpen ? handleDragEnd : handleDragEndToOpen}
+      >
+        <>
+          {!isOpen ? (
+            <Box
+              sx={{
+                width: "50px",
+                height: "4px",
+                backgroundColor: "black",
+                margin: "10px auto",
+                cursor: "pointer",
+                zIndex: 3,
+              }}
+            ></Box>
+          ) : (
+            <></>
+          )}
           <Box
             sx={{
-              width: "50px",
-              height: "4px",
-              backgroundColor: "black",
-              margin: "10px auto",
-              cursor: "pointer",
-              zIndex: 3,
+              display: "flex",
+              gap: 1,
+              mt: 5,
+              ml: 6,
+              mr: 5,
+              justifyContent: "center",
             }}
-          ></Box>
-          <Box sx={{ display: "flex", gap: 1, justifyContent: "center" }}>
+          >
             <Typography variant="h6">Showing</Typography>
             <Typography
               variant="h6"
@@ -133,55 +160,18 @@ const Model = () => {
             </Typography>
             <Typography variant="h6">Results</Typography>
           </Box>
-        </motion.div>
-      ) : (
-        <motion.div
-          className="model motion-draggable"
-          style={{
-            transform: `translateY(${translateY}px)`,
-            backgroundColor: "#fff",
-            position: "fixed",
-            top: isOpen ? 0 : "auto",
-            bottom: isOpen ? "auto" : 0,
-            left: 0,
-            width: "100%",
-            height: isOpen ? "100%" : "10vh", // Adjust the initial height value here
-            pointerEvents: isOpen ? "initial" : "none",
-            zIndex: 2,
-            // overflowY: "scroll",
-            display: !isOpen ? "flex" : "",
-            justifyContent: !isOpen ? "center" : "",
-          }}
-          drag={isOpen ? "y" : false}
-          dragConstraints={{ top: isOpen ? 0 : -window.innerHeight, bottom: 0 }}
-          dragElastic={0.8}
-          onDrag={handleDrag}
-          onDragEnd={handleDragEnd}
-        >
-          <>
-            <Box sx={{ display: "flex", gap: 1, mt: 5, ml: 6, mr: 5 }}>
-              <Typography variant="h6">Showing</Typography>
-              <Typography
-                variant="h6"
-                color={"secondary"}
-                sx={{ fontWeight: "bold" }}
-              >
-                {CategoryExperiencesData.length}
-              </Typography>
-              <Typography variant="h6">Results</Typography>
-            </Box>
-            <div style={{ height: "100%", overflowY: "scroll" }}>
-              <Grid container spacing={4} sx={{ padding: 5, marginBottom: 10 }}>
-                {CategoryExperiencesData.map((card) => (
-                  <Grid item lg={4} md={6} xs={12} key={card.id}>
-                    <ExperienceCard {...card} />
-                  </Grid>
-                ))}
-              </Grid>
-            </div>
-          </>
-        </motion.div>
-      )}
+          <div style={{ height: "100%", overflowY: "scroll" }}>
+            <Grid container spacing={4} sx={{ padding: 5, marginBottom: 10 }}>
+              {CategoryExperiencesData.map((card) => (
+                <Grid item lg={4} md={6} xs={12} key={card.id}>
+                  <ExperienceCard {...card} />
+                </Grid>
+              ))}
+            </Grid>
+          </div>
+        </>
+      </motion.div>
+      {/* )} */}
     </>
   );
 };
