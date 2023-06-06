@@ -3,7 +3,7 @@ import { motion, useMotionValue, useTransform } from "framer-motion";
 import { Grid, Typography, Box } from "@mui/material";
 import ExperienceCard from "./ExperienceCard";
 import CategoryExperiencesData from "../Home/constants/category_experiences.json";
-import { height } from "@mui/system";
+// import { height } from "@mui/system";
 
 const Model = () => {
   const [isOpen, setIsOpen] = useState(true);
