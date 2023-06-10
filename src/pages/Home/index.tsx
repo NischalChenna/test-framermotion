@@ -34,7 +34,9 @@ const Model = () => {
     } else if (!isDragging && isOpen && modelDivRef.current) {
       modelDivRef.current.style.height = "100%";
     }
-    console.log(isDragging);
+    // else if (isDragging && !isOpen && modelDivRef.current) {
+    //   modelDivRef.current.style.height = "auto";
+    // }
   }, [isDragging, isOpen]);
 
   const handleDrag = (
@@ -63,13 +65,26 @@ const Model = () => {
 
   const handleDragUp = (_: any, info: { velocity: { y: any } }) => {
     const velocity = info.velocity.y;
-    const isSwipeUp = velocity < 0; // Check if the swipe is upward
-    // if (!isOpen && modelDivRef.current) {
-    //   modelDivRef.current.style.height = "40vh"; // Set the initial height here
-    // }
+    const isSwipeUp = velocity < 0;
+
     if (!isDragging && velocity < 300 && isSwipeUp) {
-      // Only enable dragging on swipe up
       setIsDragging(true);
+      const interval = setInterval(() => {
+        if (!isDragging && modelDivRef.current) {
+          const height = parseFloat(modelDivRef.current.style.height) || 12;
+          const newHeight = height + 1;
+          const translateYValue = translateY.get();
+          modelDivRef.current.style.height = `${newHeight}vh`;
+          y.set(translateYValue + 1);
+        }
+      }, 10);
+
+      const stopIncreasingHeight = () => {
+        clearInterval(interval);
+      };
+
+      window.addEventListener("mouseup", stopIncreasingHeight);
+      window.addEventListener("touchend", stopIncreasingHeight);
     }
   };
 
@@ -124,7 +139,7 @@ const Model = () => {
         }}
         drag={"y"}
         dragConstraints={{ top: 0, bottom: 0 }}
-        dragElastic={0.8}
+        // dragElastic={0.8}
         onDrag={isOpen ? handleDrag : handleDragUp}
         onDragEnd={isOpen ? handleDragEnd : handleDragEndToOpen}
       >
